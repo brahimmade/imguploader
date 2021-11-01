@@ -1,0 +1,27 @@
+{% extends 'image/base.html' %} <br />
+{% block content %}
+
+<div class="row w-100 my-3">
+  <div class="col-md-8 offset-md-2 shadow-sm p-3">
+    {% if messages %} {% for message in messages %}
+    <p class="alert alert-info">{{message}}</p>
+    {% endfor %} {% endif %}
+    <p>{{photo.caption}}</p>
+    <img src="{{photo.photo.url}}" width="100%" height="400px" alt="" />
+    <p>{{photo.desc}}</p>
+    {% if request.user.is_authenticated %}
+    <!---->
+    {% if request.user.username == photo.user.username %}
+    <div class="float-end">
+      <a class="btn btn-primary" href="{% url 'editphoto' photo.id %}"
+        ><i class="fas fa-edit"></i
+      ></a>
+      <a class="btn btn-danger" href="{% url 'deletephoto' photo.id %}"
+        ><i class="fas fa-trash-alt"></i
+      ></a>
+    </div>
+    {% endif %} {% endif %}
+  </div>
+</div>
+
+{% endblock content %}

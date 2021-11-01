@@ -1,0 +1,34 @@
+{% extends 'image/base.html' %} <br />
+
+{% block content %}
+
+<div class="row my-5 w-100">
+  {% if messages %} {% for message in messages %}
+  <p class="alert alert-info">{{message}}</p>
+  {% endfor %} {% endif %}
+  <div class="col-md-4">
+    <h4 class="text-center">Hello, {{request.user.username|capfirst}}</h4>
+    <div class="d-grid">
+      <a class="mx-auto btn {{active}} px-5" href="">Profile</a>
+      <a class="mx-auto" href="{% url 'profileupdate' %}">Add More Info</a>
+      <a class="mx-auto" href="{% url 'changepass' %}">Change Password</a>
+    </div>
+  </div>
+  <div class="col-md-8 info">
+    <p><b>Username: </b> {{request.user}}</p>
+    <p>
+      <b> Full Name:</b> {{request.user.person.first_name}}
+      {{request.user.person.last_name}}
+    </p>
+    <p><b> Gender:</b> {{request.user.person.gender}}</p>
+    <p><b> Email:</b> {{request.user.email}}</p>
+    <p><b> Mobile: </b>{{request.user.person.mobile}}</p>
+    <p><b> Address: </b>{{request.user.person.address}}</p>
+
+    <a class="btn btn-danger float-end px-5 mt-5" href="{% url 'logout' %}"
+      >Logout</a
+    >
+  </div>
+</div>
+
+{% endblock content %}

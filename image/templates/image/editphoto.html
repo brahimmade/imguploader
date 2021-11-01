@@ -1,0 +1,22 @@
+{% extends 'image/base.html' %} <br />
+
+{% block content %}
+
+<div class="row w-75 mx-auto mt-3 mb-5 shadow-sm p-3">
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %} {{form.as_p}}
+
+    <input
+      class="btn btn-primary px-5 float-end"
+      type="submit"
+      value="Upload"
+    />
+    <a
+      class="float-end btn btn-danger px-5 mx-3"
+      href="{% url 'view' photo.id %}"
+      >Cancel</a
+    >
+  </form>
+</div>
+
+{% endblock content %}

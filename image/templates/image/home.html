@@ -1,0 +1,24 @@
+{% extends 'image/base.html' %} <br />
+
+{% block content %}
+
+<div class="row w-100 img">
+  {% if messages %} {% for message in messages %}
+  <p class="alert alert-info">{{message}}</p>
+  {% endfor %} {% endif %}
+  <h5 class="text-center my-3">
+    <i> You can simply edit and delete image by clicking the image itself.</i>
+  </h5>
+  {% for photo in photos %}
+  <div class="col-sm-3 shadow-sm mx-auto my-3 p-3">
+    <p>{{photo.caption}}</p>
+    <a href="{% url 'view' photo.id %}"
+      ><img src="{{photo.photo.url}}" alt="" width="100%" height="160px"
+    /></a>
+    <p>{{photo.desc}}</p>
+    <small> <b> By:</b> {{photo.user|capfirst}}</small>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock content %}

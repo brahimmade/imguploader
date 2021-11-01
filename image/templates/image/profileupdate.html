@@ -1,0 +1,26 @@
+{% extends 'image/base.html' %} <br />
+
+{% block content %}
+
+<div class="row my-5 w-100">
+  <div class="col-md-4">
+    <h4 class="text-center">Hello, {{request.user.username|capfirst}}</h4>
+    <div class="d-grid">
+      <a class="mx-auto px-5" href="{% url 'profile' %}">Profile</a>
+      <a class="mx-auto btn {{active}} px-5" href="">Add More Info</a>
+      <a class="mx-auto" href="{% url 'changepass' %}">Change Password</a>
+    </div>
+  </div>
+  <div class="col-md-8 info">
+    <form action="" method="post">
+      {% csrf_token %} {{form.as_p}}
+      <input
+        class="btn btn-warning px-5 float-end"
+        type="submit"
+        value="Save"
+      />
+    </form>
+  </div>
+</div>
+
+{% endblock content %}
